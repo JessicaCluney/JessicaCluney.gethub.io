@@ -1,2 +1,2 @@
-# JessicaCluney.gethub.io
+# JessicaCluney.github.io
 Jessica Cluney's Web Site
