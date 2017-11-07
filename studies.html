@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.2/gist-embed.min.js"></script>
+        <link rel="stylesheet" href="css/studies.css" type="text/css" />
+        <title>Studies</title>
+        
+        <script>
+            function togglePanel(panel) {
+                $('#' + panel).toggleClass('active');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="all-contents">
+            <nav>
+                <header>Jessica Cluney's Webpage</header>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="studies.html">Studies</a></li>
+                </ul>
+            </nav>
+            <main>
+                <div class="content">
+                    <h1>Javascript</h1>
+                    <!-- YOUR NOTE SECTIONS GO BELOW HERE-->
+                    <section>
+                        <hr>
+                        <a href="#variables" onClick="togglePanel('variables')"><h2>1. Variables</h2></a>
+                        <div id="variables" class="panel">
+                            <code data-gist-id= "6421f3472f2e3bbbaa4278aaff9ecef0" data-gist-file="jsbin.xebirot.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#datatypes" onClick="togglePanel('datatypes')"><h2>2. Datatypes (Simple & Complex)</h2></a>
+                        <ol type="1">
+                           <li>Number</li>
+                           <li>String</li>
+                           <li>Boolean</li>
+                           <li>Array</li>
+                           <li>Object</li>
+                           <li>Function</li>
+                           <li>undefined</li>
+                           <li>null</li>
+                           <li>NaN</li>
+                           <li>Infinity and -Infinity</li>
+                        </ol>
+                        <div id="datatypes" class="panel">
+                            <code data-gist-id="75614eb2f6c82b7e4a7066c214321fc7" data-gist-file="jsbin.cezugan.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#operators" onClick="togglePanel('operators')"><h2>3. Operators</h2></a>
+                        <ol type="1">
+                           <li>Assignment</li>
+                           <li>Arithmetic</li>
+                           <li>Comparison</li>
+                           <li>Logical</li>
+                           <li>Binary (!, typeOf, -1)</li>
+                           <li>Turnary (a ? b : c)</li>
+                        </ol>
+                        <div id="operators" class="panel">
+                            <code data-gist-id="68e79676b2246d20e9d6b3287c23d601" data-gist-file="jsbin.puwitas.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#stringmanipulation" onClick="togglePanel('stringmanipulation')"><h2>4. String Manipulation</h2></a>
+                        <div id="stringmanipulation" class="panel">
+                            <code data-gist-id="a1d603779c8b2671f88aa073c3f73c19" data-gist-file="jsbin.rorucuv.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#controlflow" onClick="togglePanel('controlflow')"><h2>5. Control Flow: if, else-if, else</h2></a>
+                        <div id="controlflow" class="panel">
+                            <code data-gist-id="38df9ebfd8764e8f457a20981f9e3ccb" data-gist-file="jsbin.xicanez.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#loops" onClick="togglePanel('loops')"><h2>6. Loops: while, for, for-in</h2></a>
+                        <ol type="1">
+                           <li>Loop any given number of times forward and backward</li>
+                           <li>Loop over an array, forward and backward</li>
+                           <li>Loop over an  object, forward and backward</li>
+                        </ol>
+                        <div id="loops" class="panel">
+                            <code data-gist-id="abafacfd0dc80ef5191c19ee188c96b5" data-gist-file="jsbin.begorir.js" data-gist-hide-footer="true"></code>
+                        </div>
+                        <a href="#functions" onClick="togglePanel('functions')"><h2>7. Functions: Programs within Programs</h2></a>
+                        <ol type="1">
+                           <li>Two phases to using functions</li>
+                           <li>Parameters vs Arguments</li>
+                           <li>Syntax for a named function</li>
+                           <li>Assign a function to a variable</li>
+                           <li>Specify Input & Return value</li>
+                           <li>Primitive values vs Complex values</li>
+                           <li>Scope</li>
+                           <li>Closures</li>
+                        </ol>
+                        <div id="functions" class="panel">
+                            <code data-gist-id="c9414491d384463bd3ebd5075eb34ba2" data-gist-file="jsbin.cakamiv.js" data-gist-hide-footer="true"></code>
+                        </div>
+                    </section>
+                    <!-- YOUR NOTE SECTIONS GO ABOVE HERE-->
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
