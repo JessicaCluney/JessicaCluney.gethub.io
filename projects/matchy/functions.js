@@ -13,11 +13,24 @@
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function search (animals, name) {
+    for (var i = 0; i < animals.length; i++) {
+        if (name === animals[i].name) {
+           return animals[i];
+        } 
+     }
+     return null;
+}    
+
+
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+function replace(animals, name, replacement){
+    animals.splice(search, 1, replacement)
+}
 
 
 
@@ -25,11 +38,35 @@
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function remove(animals, name) {
+    var indexToRemove = -1;
+    for (var i = 0; i < animals.length; i++) {
+        if (name === animals[i].name) {
+          indexToRemove = i;
+          break;
+        } 
+    }
+    if (indexToRemove >= 0) {
+        animals.splice(indexToRemove, 1);
+    }
+}    
+
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Create ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+function add(animals, animal) {  //animals = array; animal = object = new animal to be added
+
+    for (var i = 0; i < animals.length; i++) {
+         if(animal.name.length > 0 && animal.species.length > 0 && animals[i].name === animal.name) {
+            return false;
+         }
+    } 
+    return animals.push(animal); 
+ 
+}    
+    
 
 
 

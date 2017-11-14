@@ -16,7 +16,7 @@ var animal = {
 };
 
 animal.species = "dog";
-animal[name] = "Gracie";
+animal['name'] = "Gracie";
 animal.noises = [];
 console.log(animal);
 
@@ -75,7 +75,7 @@ animals.push(animal);
 console.log(animals);
 var duck = {
     species: "duck",
-    name: "Jerome",
+    name: "Howard",
     noises: ['quack', 'honk', 'sneeze', 'woosh']
 };
 animals.push(duck);
@@ -83,7 +83,7 @@ console.log(animals);
 
 var eagle = {
     species: "eagle",
-    name: "Melanie",
+    name: "Baldy",
     noises: ["screech", "peck"]
 };
 
@@ -105,23 +105,20 @@ console.log(animals.length);
 //////////////////////////////////////////////////////////////////////
 var animalFriends = []; // used array to easily access list
 var friends = animalFriends;
-var randomAnimal = animal[Math.floor(Math.random()*animal.length)];
+function getRandom (animals) {
+    return Math.floor(Math.random() * animals.length);
+}
+var rando = getRandom(animals); 
+console.log(rando); //2
+friends.push(animals[rando]["name"]);
 console.log(friends);
-
-console.log();
+animals[0].friends = friends;
+console.log(animals);
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
  * move onto Part 2 in the file called "functions.js"
  */
 
- 
-
-
-//  5. [ ] Write a function that takes our `animals` array and returns the `index` of a random element using `Math.random`
-//  6. [ ] Using a random index from this function that you just created, get a random animal and add its `name` to `friends`.
-//  7. [ ] `console.log` `friends`.
-//  8. [ ] add `friends` as a **property** named `friends` on one of the animals in `animals`
-//  9. [ ] `console.log` your work.
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

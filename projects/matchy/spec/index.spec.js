@@ -72,18 +72,18 @@ describe("#data", function () {
             expect(someArrayOfFriends).to.be.an('array');
         });
         it('getRandom() should be a Function!', function () {
-            const getRandom = getRandom;
+            // const getRandom = getRandom;
             expect(getRandom).to.be.a('function');
         });
         it('getRandom() should use Math.random()!', function () {
-            const getRandom = getRandom;
+            // const getRandom = getRandom;
             sinon.spy(Math, 'random');
             getRandom(animals);
             expect(Math.random.calledOnce).to.be.true;
             Math.random.restore();
         });
         it('getRandom() should return a random index from an array!', function () {
-            const getRandom = getRandom;
+            // const getRandom = getRandom;
             expect(getRandom([1, 2, 3, 4])).to.be.within(0, 2);
         });
     });
