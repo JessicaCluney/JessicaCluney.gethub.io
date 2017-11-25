@@ -1,0 +1,12 @@
+function FirstFactorial(num) { 
+   if (num < 0) {
+        return -1;
+   }
+  else if (num === 0) {
+      return 1;
+  }
+    else {
+        return (FirstFactorial(num - 1) * num); 
+    }
+}
+FirstFactorial(readline());//input 8 //output 40320

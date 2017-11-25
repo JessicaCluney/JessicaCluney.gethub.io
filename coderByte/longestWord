@@ -1,0 +1,14 @@
+function LongestWord(sen) { 
+  var senArray = sen.split(" ");
+  var longest = senArray[0];
+  for(var i = 1; i < senArray.length; i ++) {
+      if(senArray[i].length > longest.length) {
+         longest = senArray[i];
+      }
+  }
+ return longest; 
+}
+
+LongestWord(readline());
+
+//returns longest word in sentence

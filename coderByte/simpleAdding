@@ -1,0 +1,9 @@
+var sumTotal;
+function SimpleAdding(num) { 
+ sumTotal = 0;
+for (var i = 1; i <= num; i++) {
+ sumTotal+= i;
+  } 
+  return sumTotal;       
+}
+SimpleAdding(readline());

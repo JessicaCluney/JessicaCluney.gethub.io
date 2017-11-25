@@ -147,13 +147,13 @@ _.last = function (array, number) {
 *      -> should log "a" "b" "c" to the console
 */
 _.each = function(collection, func) {
-    if(Array.isArray(collection)) {
+    if(Array.isArray(collection)) {     //if collection is array
        for( var i = 0; i < collection.length; i++) {
-           func(collection[i], i, collection);
+           func(collection[i], i, collection); //call <function> once for each element with the arguments:the element, it's index, <collection>
        } 
-    } else if(typeof collection === 'object') {
+    } else if(typeof collection === 'object') { //if <collection> is an object 
         for( var key in collection) {
-            func(collection[key], key, collection);
+            func(collection[key], key, collection);//call <function> once for each property with the arguments: // the property's value, it's key, <collection>
         }
     }
 };
@@ -177,11 +177,11 @@ _.each = function(collection, func) {
 
 _.indexOf = function(array, value) {
     for(var i = 0; i < array.length; i++) {
-     if(array[i] === value){
+     if(array[i] === value){ //Return the index of <array> that is the first occurrance of <value>
        return i;
      }
     } 
-  return -1;
+  return -1; //Return -1 if <value> is not in <array>
 };
 
 /** _.filter()
@@ -229,6 +229,15 @@ _.filter = function(array, func) {
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function(array, func) {
+    var newArray = [];
+    _.each(array, function (value, index, collection) {
+        if (!func(value, index, collection)) {
+            newArray.push(value);
+        }
+    });
+    return newArray;
+};
 
 /** _.partition()
 * Arguments:
@@ -248,7 +257,19 @@ _.filter = function(array, func) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+  
+_.partition = function(array, func) {
+    //  var newArray = [];
+return [_.filter(array, func),_.reject(array, func)];
+};
+    // function splitIntoSubArray(start, end) {
+    //     // while (start.length) {
+    //     //     newArray.splice(0, end - 1)); 
+    //      while (newArray.length) {
+    //         newArray.slice(0, start.length)); 
+    //     }
+    // }
+    //     return newArray; 
 
 /** _.unique()
 * Arguments:
@@ -259,6 +280,22 @@ _.filter = function(array, func) {
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+_.unique = function(array) {
+    var newArray = [];
+    _.each(array, function(value, i, collection) {
+        if(_.indexOf(newArray, value) === -1) {
+            newArray.push(value);
+        }
+    });
+    return newArray;
+};
+
+// Array.prototype.unique = function() {
+//   return this.filter(function (value, index, self) { 
+//     return self.indexOf(value) === index;
+//   });
+// }
 
 
 /** _.map()
@@ -277,6 +314,14 @@ _.filter = function(array, func) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func) {
+    var newArray = [];
+    _.each(collection, function(value, i, group) {
+        newArray.push(func(value, i, group));
+    }) 
+    return newArray;
+};
+
 
 /** _.pluck()
 * Arguments:
@@ -288,6 +333,12 @@ _.filter = function(array, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+_.pluck = function(array, property) {
+    return _.map(array, function(value, i, group) {
+        return value[property];
+    });
+};
 
 
 /** _.contains()
@@ -304,6 +355,11 @@ _.filter = function(array, func) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value) {
+     
+    return (_.indexOf(array, value) > -1 ? true : false);
+};
 
 
 /** _.every()
@@ -327,6 +383,16 @@ _.filter = function(array, func) {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(collection, func) {
+    return _.reject(collection, function(value, index, collection) {
+        if(!func) {  //if no function
+            return !!value;  //return true value
+        } else {
+            return func(value, index, collection); //return function values
+        }
+    }).length === 0; //sets to boolean
+};
+
 
 /** _.some()
 * Arguments:
@@ -349,6 +415,15 @@ _.filter = function(array, func) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function (collection, func) {
+ return _.filter(collection, function(value, index, group) {
+        if(!func) {  //if no function
+            return !!value;  //return true value
+        } else {
+            return func(value, index, collection); //return function values
+        }
+    }).length > 0; //sets to boolean
+};
 
 /** _.reduce()
 * Arguments:
@@ -369,6 +444,39 @@ _.filter = function(array, func) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed) {
+    var arrayToIterate = array;
+    var previousResult;
+    var indexModifier = 0;
+    if (seed !== null && seed !== undefined) {
+       previousResult = seed;
+    } else {
+       previousResult = array[0];
+       arrayToIterate = array.slice(1, array.length);
+       indexModifier = 1;
+    }
+    _.each(arrayToIterate, function(value, index, collection) {
+       previousResult = func(previousResult, value, index + indexModifier);
+    });
+    return previousResult;
+};
+
+// function reduce(array, action, seed) {
+//   array.forEach(function(value, index, array) {
+//     if(seed === undefined && index === 0) {
+//       seed = array[0];
+//     } else {
+//       seed = action(seed, value, index)
+//     }
+//   });
+//   return seed;
+// }
+// var arr = [1, 2, 3, 4, 5];
+
+// var arrSum = reduce(arr, function(previousResult, value, index) {
+//   return previousResult / value;
+// }, (1));
+// console.log(arrSum);
 
 /** _.extend()
 * Arguments:
@@ -385,6 +493,16 @@ _.filter = function(array, func) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
+_.extend = function(objectOne, objectTwo) {
+    // Use the arguments variable that is passed to all JavaScript functions.
+    // The arguments is an array-like (not exactly an array, acts like an object) structure that contains
+    // all arguments passed to the function, not just the named parameters.
+    // Use this funky Array.prototype.slice to turn it into a real array.
+    var args = Array.prototype.slice.call(arguments);
+    return _.reduce(args, function(previousSum, currentValue, currentIndex) {
+        return Object.assign(previousSum, currentValue);  //target, source
+    });
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

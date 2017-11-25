@@ -1,0 +1,50 @@
+/*
+Using the JavaScript language, have the function LetterChanges(str) take the str parameter being passed and modify it using the following algorithm. Replace every letter in the string with the letter following it in the alphabet (ie. c becomes d, z becomes a). Then capitalize every vowel in this new string (a, e, i, o, u) and finally return this modified string. 
+*/
+
+var each = function each(collection, func) {
+    if(Array.isArray(collection)) {     //if collection is array
+       for( var i = 0; i < collection.length; i++) { //loop over array 
+           func(collection[i], i, collection); //call function once for each element with the arguments: element, index, collection
+       } 
+    } else if(typeof collection === 'object') { //if collection is an object 
+        for( var key in collection) {
+            func(collection[key], key, collection);//call function once for each property with the arguments: value, key, collection
+        }
+    }
+};
+
+var map = function map(collection, func) {
+    var newArray = [];
+    each(collection, function(value, i, group) {
+        newArray.push(func(value, i, group));
+    });
+    return newArray;
+}
+
+function LetterChanges(str) { 
+str = str.toLowerCase();
+  var nextLetterString;
+  var strArray = [];
+  for(var j = 0; j < str.length; j++) {
+    var jthChar = str.charCodeAt(j);
+    if((jthChar >= 65 && jthChar <= 90) || (jthChar >= 97 && jthChar <= 122)) {
+      nextLetterString = (String.fromCharCode(jthChar + 1));
+      strArray.push(nextLetterString);  
+    } else {
+      strArray.push(String.fromCharCode(jthChar));   
+    }
+  }
+  var string =
+  map(strArray, function(e, i , a) {
+     if(e === 'a' || e === 'e' || e === 'i' || e ==='o' || e ==='u') {
+        return e.toUpperCase();
+         } else {
+        return e;
+     }
+        });
+         return string.join(""); 
+} 
+   
+// keep this function call here 
+LetterChanges(readline());
