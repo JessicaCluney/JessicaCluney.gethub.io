@@ -27,3 +27,15 @@ console.log(favoritePizza("Ica", pizza));//return name loves __ pizza!
 var fruits = ["apple", "orange", "lemon"];
 var citrus = fruits.slice(1,3);
 console.log(citrus);//["orange", "lemon"]
+
+//capitalizeFirstMap//first letter each word in array
+
+const capitalizeFirstMap = words => {
+  return words.map(function(word) {
+  return word[0].toUpperCase() + word.slice(1);
+  });
+};
+
+//same as previous
+const capitalizeFirstMap = words => {
+   words.map(word => `${word[0].toUpperCase()}${word.slice(1)}`);

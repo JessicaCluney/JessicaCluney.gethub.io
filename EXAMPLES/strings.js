@@ -72,3 +72,4 @@ function wordLength(toppings){
   return longestWord;
 }
 console.log(wordLength(pizzaTop)); //"pepperoni"
+
